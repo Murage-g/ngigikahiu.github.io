@@ -1,0 +1,484 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Ngigi Kahiu – Portfolio</title>
+  <meta name="description" content="Portfolio of Architect Name – selected works, services, and contact." />
+  <meta property="og:title" content="Architect Name – Portfolio" />
+  <meta property="og:description" content="Selected works, services, and contact." />
+  <meta property="og:type" content="website" />
+  <meta name="theme-color" content="#0b0b0b" />
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' fill='%230B0B0B'/%3E%3Cpath d='M20 78 L50 22 L80 78 Z' fill='%23ffffff'/%3E%3C/svg%3E" />
+  <style>
+    :root{
+      --bg: #0b0b0b;
+      --card:#121212;
+      --fg:#eaeaea;
+      --muted:#b5b5b5;
+      --accent:#7dd3fc; /* light-sky */
+      --accent-2:#f59e0b; /* amber */
+      --border:#232323;
+      --shadow: 0 10px 30px rgba(0,0,0,.35);
+    }
+    :root.light{
+      --bg:#f7f7f7;
+      --card:#ffffff;
+      --fg:#0c0c0c;
+      --muted:#5a5a5a;
+      --accent:#0ea5e9;
+      --accent-2:#b45309;
+      --border:#eaeaea;
+      --shadow: 0 10px 24px rgba(0,0,0,.08);
+    }
+
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0; font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Inter, "Helvetica Neue", Arial, "Apple Color Emoji","Segoe UI Emoji";
+      background: var(--bg); color: var(--fg); line-height:1.6; 
+    }
+    a{color:inherit; text-decoration:none}
+    img{max-width:100%; display:block}
+    .container{width:min(1200px, 92%); margin-inline:auto}
+
+    /* Header */
+    header{position:sticky; top:0; z-index:50; backdrop-filter:saturate(1.2) blur(8px); background:color-mix(in oklab, var(--bg) 80%, transparent); border-bottom:1px solid var(--border)}
+    .nav{display:flex; align-items:center; justify-content:space-between; padding:14px 0}
+    .brand{display:flex; gap:.75rem; align-items:center}
+    .logo{width:36px; height:36px; border-radius:12px; background:linear-gradient(135deg, var(--accent), var(--accent-2)); display:grid; place-items:center; box-shadow:var(--shadow)}
+    .logo svg{width:22px; height:22px; fill:#111}
+    .brand h1{font-size:1.05rem; margin:0; letter-spacing:.04em}
+    .nav a{opacity:.9}
+    .nav a:hover{opacity:1}
+
+    .nav-links{display:flex; gap:1.25rem; align-items:center}
+    .btn{display:inline-flex; align-items:center; gap:.5rem; padding:.7rem 1rem; border:1px solid var(--border); border-radius:999px; background:linear-gradient(180deg, color-mix(in oklab, var(--card) 70%, transparent), var(--card)); box-shadow:var(--shadow)}
+    .btn:active{transform:translateY(1px)}
+    .ghost{background:transparent}
+
+    /* Mobile menu */
+    .hamburger{display:none; background:transparent; border:1px solid var(--border); padding:.5rem .6rem; border-radius:10px}
+    @media (max-width: 880px){
+      .nav-links{display:none}
+      .hamburger{display:inline-flex}
+      .mobile{display:none; position:fixed; inset:60px 0 0 0; background:var(--bg); padding:1rem; border-top:1px solid var(--border)}
+      .mobile.open{display:block}
+      .mobile a{display:block; padding:1rem; border-bottom:1px solid var(--border)}
+    }
+
+    /* Hero */
+    .hero{display:grid; grid-template-columns: 1.05fr .95fr; gap:3rem; align-items:center; padding:64px 0}
+    .tag{display:inline-flex; gap:.5rem; padding:.3rem .6rem; border:1px solid var(--border); border-radius:999px; font-size:.8rem; color:var(--muted)}
+    .hero h2{margin:.6rem 0 1rem; font-size:clamp(2rem, 2.5rem + 1.5vw, 4rem); line-height:1.1}
+    .hero p{color:var(--muted)}
+    .cta{display:flex; gap:.8rem; flex-wrap:wrap; margin-top:1.2rem}
+    .hero-media{aspect-ratio:4/3; border-radius:24px; overflow:hidden; border:1px solid var(--border); box-shadow:var(--shadow); position:relative}
+    .hero-media::before{content:""; position:absolute; inset:0; background:repeating-linear-gradient(45deg, #0000 0 10px, color-mix(in oklab, var(--accent) 25%, transparent) 10px 20px)}
+    .hero-media .ph{position:absolute; inset:0; background:linear-gradient(135deg, color-mix(in oklab, var(--card) 75%, transparent), var(--card)); display:grid; place-items:center; font-weight:600; color:var(--muted)}
+    @media (max-width: 980px){ .hero{grid-template-columns:1fr; gap:2rem; padding:40px 0}}
+
+    /* Section */
+    section{padding:56px 0}
+    .section-head{display:flex; align-items:end; justify-content:space-between; gap:1rem; margin-bottom:1.2rem}
+    .section-head h3{margin:0; font-size:1.6rem}
+    .section-head p{margin:0; color:var(--muted)}
+
+    /* Grid cards */
+    .grid{display:grid; grid-template-columns: repeat(3, 1fr); gap:18px}
+    @media (max-width: 980px){ .grid{grid-template-columns: repeat(2,1fr)} }
+    @media (max-width: 640px){ .grid{grid-template-columns: 1fr} }
+
+    .card{border:1px solid var(--border); border-radius:20px; overflow:hidden; background:var(--card); box-shadow:var(--shadow); transition:transform .2s ease}
+    .card:hover{transform:translateY(-3px)}
+    .thumb{aspect-ratio: 4/3; background:linear-gradient(135deg, color-mix(in oklab, var(--accent) 20%, transparent), color-mix(in oklab, var(--card) 75%, transparent)); border-bottom:1px solid var(--border); position:relative}
+    .thumb::after{content:""; position:absolute; inset:auto 10px 10px auto; width:60px; height:60px; border-radius:12px; background:radial-gradient(circle at 30% 30%, color-mix(in oklab, var(--fg) 20%, transparent), transparent 70%); opacity:.25}
+    .card-body{padding:14px}
+    .meta{display:flex; justify-content:space-between; gap:.75rem; color:var(--muted); font-size:.9rem}
+    .filters{display:flex; gap:.6rem; flex-wrap:wrap; margin:10px 0 20px}
+    .chip{padding:.4rem .7rem; border:1px solid var(--border); border-radius:999px; cursor:pointer; user-select:none}
+    .chip.active{background:color-mix(in oklab, var(--accent) 20%, transparent)}
+
+    /* About */
+    .about{display:grid; grid-template-columns: 1fr 1fr; gap:2rem}
+    .kpi{display:grid; grid-template-columns:repeat(3,1fr); gap:12px; margin-top:10px}
+    .kpi .item{border:1px solid var(--border); border-radius:14px; padding:14px; background:var(--card); text-align:center}
+    .kpi .item h4{margin:.2rem 0; font-size:1.4rem}
+    @media (max-width: 900px){ .about{grid-template-columns:1fr} }
+
+    /* Services */
+    .service{padding:14px}
+
+    /* Testimonials */
+    .slider{position:relative}
+    .slides{display:flex; gap:14px; overflow:auto; scroll-snap-type:x mandatory; scrollbar-width:none}
+    .slides::-webkit-scrollbar{display:none}
+    .slide{flex:0 0 85%; scroll-snap-align:center}
+    @media (min-width: 900px){ .slide{flex-basis:48%} }
+    .quote{font-size:1.05rem}
+
+    /* Contact */
+    form{display:grid; gap:10px}
+    input, textarea{width:100%; padding:.9rem 1rem; border-radius:12px; border:1px solid var(--border); background:var(--card); color:var(--fg)}
+    textarea{min-height:140px}
+    .note{color:var(--muted); font-size:.9rem}
+
+    /* Footer */
+    footer{border-top:1px solid var(--border); padding:32px 0; color:var(--muted)}
+
+    /* Reveal Animations */
+    .reveal{opacity:0; transform:translateY(12px); transition: all .6s ease}
+    .reveal.visible{opacity:1; transform:none}
+  </style>
+</head>
+<body>
+  <header>
+    <div class="container nav">
+      <div class="brand">
+        <div class="logo" aria-hidden="true">
+          <svg viewBox="0 0 24 24" role="img" aria-label="Logo"><path d="M3 19h18v2H3zM11 3h2v10h-2zM7 9l5-6 5 6z"/></svg>
+        </div>
+        <h1>Ngigi Kahiu</h1>
+      </div>
+      <nav class="nav-links" aria-label="Primary">
+        <a href="#work">Work</a>
+        <a href="#about">About</a>
+        <a href="#services">Services</a>
+        <a href="#testimonials">Testimonials</a>
+        <a href="#contact">Contact</a>
+        <button id="themeToggle" class="btn ghost" aria-pressed="false" title="Toggle theme">🌗</button>
+        <a class="btn" href="#contact">Let’s talk</a>
+      </nav>
+      <button class="hamburger" id="menuBtn" aria-expanded="false" aria-controls="mobileNav" aria-label="Menu">☰</button>
+    </div>
+    <!-- <div id="mobileNav" class="mobile" role="dialog" aria-modal="true" aria-label="Mobile Navigation">
+      <a href="#work" onclick="toggleMenu(false)">Work</a>
+      <a href="#about" onclick="toggleMenu(false)">About</a>
+      <a href="#services" onclick="toggleMenu(false)">Services</a>
+      <a href="#testimonials" onclick="toggleMenu(false)">Testimonials</a>
+      <a href="#contact" onclick="toggleMenu(false)">Contact</a>
+      <button class="btn ghost" onclick="toggleTheme()">Toggle theme</button>
+    </div> -->
+  </header>
+
+  <main>
+    <!-- Hero -->
+    <section class="hero container">
+      <div>
+        <span class="tag">ARCHITECTURE      • INTERIOR    • URBAN</span>
+        <h2>Designing spaces that balance <em>form</em> and <em>function</em>.</h2>
+        <p>
+            I'm an emerging architect based in Kikuyu, driven by a passion for thoughtful and context-responsive design. 
+            My work spans residential, commercial, and cultural spaces, blending functionality with sustainability. 
+            Though early in my career, I've had the opportunity to contribute to real-world projects that reflect 
+            my commitment to creating meaningful architecture rooted in place and purpose. Explore my portfolio to 
+            see how I'm shaping spaces that tell stories and serve individual needs.
+        </p>
+        <div class="cta">
+          <a class="btn" href="#work">View Work</a>
+          <a class="btn ghost" href="#contact">Get in touch</a>
+          <a class="btn ghost" href="#" download>Download CV</a>
+        </div>
+      </div>
+      <div class="hero-media">
+        <div class="ph">Hero Image / Project Collage</div>
+      </div>
+    </section>
+
+    <!-- Work -->
+    <section id="work" class="container">
+      <div class="section-head">
+        <div>
+          <h3>Selected Work</h3>
+          <p>Filter by project type.</p>
+        </div>
+        <div class="filters" role="tablist" aria-label="Project filters">
+          <button class="chip active" data-filter="all" role="tab" aria-selected="true">All</button>
+          <button class="chip" data-filter="residential" role="tab">Residential</button>
+          <button class="chip" data-filter="commercial" role="tab">Commercial</button>
+          <button class="chip" data-filter="interior" role="tab">Interior</button>
+          <button class="chip" data-filter="concept" role="tab">Concept</button>
+        </div>
+      </div>
+
+      <div class="grid" id="projects">
+        <!-- Card 1 -->
+        <article class="card reveal" data-category="residential" data-title="Ridge House" data-year="2024" data-location="Nairobi" data-description="A hillside residence that captures light with a terraced plan and passive cooling.">
+          <div class="thumb" role="img" aria-label="Ridge House – exterior"></div>
+          <div class="card-body">
+            <div class="meta"><strong>Ridge House</strong><span>2024</span></div>
+            <div class="meta"><span>Residential</span><span>Nairobi</span></div>
+          </div>
+        </article>
+        <!-- Card 2 -->
+        <article class="card reveal" data-category="commercial" data-title="Kijani Offices" data-year="2023" data-location="Westlands" data-description="A flexible, daylight-first office with a perforated facade for shading.">
+          <div class="thumb" role="img" aria-label="Kijani Offices – facade"></div>
+          <div class="card-body">
+            <div class="meta"><strong>Kijani Offices</strong><span>2023</span></div>
+            <div class="meta"><span>Commercial</span><span>Westlands</span></div>
+          </div>
+        </article>
+        <!-- Card 3 -->
+        <article class="card reveal" data-category="interior" data-title="Atrium Loft" data-year="2022" data-location="Kilimani" data-description="Adaptive reuse loft with double-height atrium and timber mezzanine.">
+          <div class="thumb" role="img" aria-label="Atrium Loft – interior"></div>
+          <div class="card-body">
+            <div class="meta"><strong>Atrium Loft</strong><span>2022</span></div>
+            <div class="meta"><span>Interior</span><span>Kilimani</span></div>
+          </div>
+        </article>
+        <!-- Card 4 -->
+        <article class="card reveal" data-category="concept" data-title="Coastal Museum" data-year="2025" data-location="Mombasa" data-description="Concept for a low-energy coastal museum referencing Swahili coral rag.">
+          <div class="thumb" role="img" aria-label="Coastal Museum – concept"></div>
+          <div class="card-body">
+            <div class="meta"><strong>Coastal Museum</strong><span>2025</span></div>
+            <div class="meta"><span>Concept</span><span>Mombasa</span></div>
+          </div>
+        </article>
+        <!-- Card 5 -->
+        <article class="card reveal" data-category="residential" data-title="Courtyard Row" data-year="2021" data-location="Ruiru" data-description="Row houses organized around small planted courtyards.">
+          <div class="thumb" role="img" aria-label="Courtyard Row – plan"></div>
+          <div class="card-body">
+            <div class="meta"><strong>Courtyard Row</strong><span>2021</span></div>
+            <div class="meta"><span>Residential</span><span>Ruiru</span></div>
+          </div>
+        </article>
+        <!-- Card 6 -->
+        <article class="card reveal" data-category="commercial" data-title="Market Hall" data-year="2020" data-location="Kisumu" data-description="Shaded market hall with stack ventilation and modular stalls.">
+          <div class="thumb" role="img" aria-label="Market Hall – roof"></div>
+          <div class="card-body">
+            <div class="meta"><strong>Market Hall</strong><span>2020</span></div>
+            <div class="meta"><span>Commercial</span><span>Kisumu</span></div>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <!-- About -->
+    <section id="about" class="container">
+      <div class="section-head">
+        <h3>About</h3>
+        <p>Context-led. Material honest. Energy conscious.</p>
+      </div>
+      <div class="about">
+        <div class="card" style="padding:18px">
+          <h4>Samuel Ngigi Kahiu</h4>
+          <p>
+            I am an architect with over 3 years of experience designing and delivering 
+            <strong>residential, commercial, and cultural spaces</strong>.  
+            My work is guided by a balance of research, craft, and responsible detailing, 
+            with the goal of creating environments that feel both timeless and inevitable.
+          </p>
+
+          <ul>
+            <li><strong>Professional:</strong> Registered Architect – [Your Board / Association]</li>
+            <li><strong>Expertise:</strong> Passive design strategies, adaptive reuse, timber and low-carbon materials</li>
+            <li><strong>Tools:</strong> Revit, AutoCAD, Rhino/Grasshopper, SketchUp, Enscape, Adobe Creative Suite</li>
+          </ul>       
+        </div>
+        <div>
+          <div class="kpi">
+            <div class="item"><h4>10+</h4><span class="muted">Projects</span></div>
+            <div class="item"><h4>0</h4><span class="muted">Awards/Noms</span></div>
+            <div class="item"><h4>3</h4><span class="muted">Years</span></div>
+          </div>
+          <div class="card" style="margin-top:12px; padding:18px">
+            <h4>Approach</h4>
+            <p>
+              We begin every project by listening closely to our clients and studying the site in detail. 
+              We then explore ideas through sketches, models, and prototypes, refining them together until the design truly reflects both the vision and the context. 
+              We embed sustainability from the very start — using daylighting, natural ventilation, and envelope-first strategies — 
+              so that our spaces are not only functional and beautiful, but also responsible and enduring.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Services -->
+    <section id="services" class="container">
+      <div class="section-head">
+        <h3>Services</h3>
+        <p>From concept to completion.</p>
+      </div>
+      <div class="grid">
+        <div class="card service reveal"><h4>Architectural Design</h4><p>Feasibility, concept, schematic, design development, and construction documentation.</p></div>
+        <div class="card service reveal"><h4>Interior Architecture</h4><p>Program-driven interiors, custom millwork, and material palettes.</p></div>
+        <div class="card service reveal"><h4>Masterplanning</h4><p>Site planning, circulation, density studies, and phasing strategies.</p></div>
+        <div class="card service reveal"><h4>3D & Visualization</h4><p>Modeling, BIM, VR walkthroughs, still renders, and animations.</p></div>
+        <div class="card service reveal"><h4>Technical Advisory</h4><p>Envelope detailing, low-energy design, and code coordination.</p></div>
+        <div class="card service reveal"><h4>Project Management</h4><p>Tendering, cost control, and site administration.</p></div>
+      </div>
+    </section>
+
+    <!-- Testimonials -->
+    <section id="testimonials" class="container">
+      <div class="section-head">
+        <h3>Testimonials</h3>
+        <p>What clients say.</p>
+      </div>
+      <div class="slider">
+        <div class="slides">
+          <article class="card slide reveal" style="padding:18px">
+            <p class="quote">“They translated our vision into a serene family home that breathes with the landscape.”</p>
+            <p class="meta"><strong>— Wanjiru K.</strong> • Ridge House</p>
+          </article>
+          <article class="card slide reveal" style="padding:18px">
+            <p class="quote">“A thoughtful and efficient office that our team loves. The daylighting is phenomenal.”</p>
+            <p class="meta"><strong>— Malik O.</strong> • Kijani Offices</p>
+          </article>
+          <article class="card slide reveal" style="padding:18px">
+            <p class="quote">“Detail-driven, collaborative, and on schedule from concept to handover.”</p>
+            <p class="meta"><strong>— Site Lead</strong> • Market Hall</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- Contact -->
+    <section id="contact" class="container">
+      <div class="section-head">
+        <h3>Contact</h3>
+        <p>Let’s build something meaningful.</p>
+      </div>
+      <div class="about">
+        <div class="card" style="padding:18px">
+          <h4>Send a message</h4>
+          <!-- Replace the action URL with your Formspree or Netlify Forms endpoint -->
+          <form method="POST" action="#">
+            <label>
+              <span class="note">Your name</span>
+              <input name="name" required />
+            </label>
+            <label>
+              <span class="note">Email</span>
+              <input type="email" name="email" required />
+            </label>
+            <label>
+              <span class="note">Message</span>
+              <textarea name="message" required></textarea>
+            </label>
+            <button class="btn" type="submit">Send</button>
+            <p class="note">Prefer email? <a href="mailto:hello@example.com">hello@example.com</a></p>
+          </form>
+        </div>
+        <div>
+          <div class="card" style="padding:18px">
+            <h4>Studio</h4>
+            <p>Kikuyu, Kenya<br/>Monday – Friday, 9:00 – 18:00 EAT</p>
+            <p>
+              <a href="#">LinkedIn</a> • <a href="#">Instagram</a> • <a href="#">X</a>
+            </p>
+          </div>
+          <div class="card" style="padding:18px; margin-top:12px">
+            <h4>Capabilities</h4>
+              <ul>
+                <li>Building design for homes, shops, and offices</li>
+                <li>Plumbing installation and maintenance</li>
+                <li>Brickwork, masonry, and concrete works</li>
+                <li>Roofing and structural repairs</li>
+                <li>Interior finishing: tiling, painting, and ceilings</li>
+                <li>Site supervision and project management</li>
+              </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container">
+      <p>© <span id="year"></span> Architect Name. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <!-- Modal for project details -->
+  <dialog id="projectModal" style="border:none; border-radius:20px; padding:0; width:min(900px, 92%); background:var(--card); color:var(--fg); box-shadow:var(--shadow)">
+    <div style="display:flex; flex-direction:column">
+      <div style="display:flex; justify-content:space-between; align-items:center; padding:12px 16px; border-bottom:1px solid var(--border)">
+        <strong id="modalTitle">Project</strong>
+        <button class="btn ghost" onclick="closeModal()" aria-label="Close">✕</button>
+      </div>
+      <div style="padding:16px; display:grid; grid-template-columns: 1fr 1fr; gap:16px">
+        <div class="thumb" style="aspect-ratio: 4/3" id="modalImage" aria-label="Project image"></div>
+        <div>
+          <p id="modalMeta" class="note"></p>
+          <p id="modalDesc"></p>
+        </div>
+      </div>
+    </div>
+  </dialog>
+
+  <script>
+    // Year
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    // Theme persistence
+    const root = document.documentElement;
+    const storedTheme = localStorage.getItem('theme');
+    if (storedTheme === 'light') root.classList.add('light');
+    function toggleTheme(){
+      root.classList.toggle('light');
+      localStorage.setItem('theme', root.classList.contains('light') ? 'light' : 'dark');
+      document.getElementById('themeToggle')?.setAttribute('aria-pressed', root.classList.contains('light'));
+    }
+    document.getElementById('themeToggle')?.addEventListener('click', toggleTheme);
+
+    // Mobile menu
+    const mobile = document.getElementById('mobileNav');
+    const menuBtn = document.getElementById('menuBtn');
+    function toggleMenu(force){
+      const open = force ?? !mobile.classList.contains('open');
+      mobile.classList.toggle('open', open);
+      menuBtn.setAttribute('aria-expanded', String(open));
+    }
+    menuBtn.addEventListener('click', ()=> toggleMenu());
+
+    // Smooth scroll (native behavior in modern browsers)
+    document.documentElement.style.scrollBehavior = 'smooth';
+
+    // Reveal on scroll
+    const io = new IntersectionObserver((entries)=>{
+      entries.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add('visible'); io.unobserve(e.target);} })
+    }, {threshold:0.15});
+    document.querySelectorAll('.reveal').forEach(el=> io.observe(el));
+
+    // Filters
+    const chips = document.querySelectorAll('.chip');
+    const cards = document.querySelectorAll('#projects .card');
+    chips.forEach(ch => ch.addEventListener('click', () => {
+      chips.forEach(c => c.classList.remove('active')); ch.classList.add('active');
+      const f = ch.dataset.filter;
+      cards.forEach(card => {
+        const show = f === 'all' || card.dataset.category === f;
+        card.style.display = show ? '' : 'none';
+      });
+    }));
+
+    // Modal logic
+    const modal = document.getElementById('projectModal');
+    function openModal(data){
+      document.getElementById('modalTitle').textContent = data.title;
+      document.getElementById('modalMeta').textContent = `${data.location} • ${data.year}`;
+      document.getElementById('modalDesc').textContent = data.description;
+      // Reset/animate placeholder image box
+      const ph = document.getElementById('modalImage');
+      ph.style.background = getComputedStyle(document.querySelector('.thumb')).background;
+      if (typeof modal.showModal === 'function') modal.showModal(); else modal.setAttribute('open','');
+    }
+    function closeModal(){ modal.close?.(); modal.removeAttribute('open'); }
+    document.addEventListener('click', (e)=>{
+      const card = e.target.closest('#projects .card');
+      if(!card) return;
+      openModal({
+        title: card.dataset.title,
+        year: card.dataset.year,
+        location: card.dataset.location,
+        description: card.dataset.description,
+      });
+    });
+
+    // Close modal on backdrop click
+    modal?.addEventListener('click', (e)=>{ if(e.target === modal) closeModal(); });
+  </script>
+</body>
+</html>
