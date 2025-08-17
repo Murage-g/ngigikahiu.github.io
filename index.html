@@ -59,10 +59,11 @@
 
     /* Mobile menu */
     .hamburger{display:none; background:transparent; border:1px solid var(--border); padding:.5rem .6rem; border-radius:10px}
+    .mobile{display:none}
     @media (max-width: 880px){
       .nav-links{display:none}
       .hamburger{display:inline-flex}
-      .mobile{display:none; position:fixed; inset:60px 0 0 0; background:var(--bg); padding:1rem; border-top:1px solid var(--border)}
+      .mobile{display:none; position:fixed; inset:60px 0 0 0; background:var(--bg); padding:1rem; border-top:1px solid var(--border),z-index: 1000;}
       .mobile.open{display:block}
       .mobile a{display:block; padding:1rem; border-bottom:1px solid var(--border)}
     }
